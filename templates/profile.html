@@ -125,6 +125,7 @@
 {% block header %}
 <script src="/static/js/asserts/vue.js"></script>
 <script src="/static/js/asserts/vue-axios.js"></script>
+<script src="/static/js/asserts/vue-twemoji-flags.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"></script>
 <link rel="stylesheet" href="/static/css/pages/profile.css">
 
@@ -143,7 +144,7 @@
             <div class="info-block">
                 <h1 class="title">
                     <p class="ranks">
-                        <img src="/static/images/flags/{{ user['country']|upper }}.png" class="profile-flag">
+                        <span class="profile-flag twemoji-flag" data-country="{{ user['country']|upper }}"></span>
                         <span class="bgf">{{ user['name'] }}</span>
                     </p>
                 </h1>

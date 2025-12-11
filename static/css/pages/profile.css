@@ -119,6 +119,15 @@
 .profile-flag {
   height: 24px;
   margin-right: 6px;
+  font-size: 24px;
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.profile-flag img {
+  height: 24px;
+  vertical-align: middle;
 }
 
 .is-striped {

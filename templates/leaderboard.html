@@ -77,8 +77,8 @@
                             </td>
                             <td class="column-player-name text-left">
                                 <a :title="flags[user.country.toUpperCase()]"
-                                    :style="'background-image: url(/static/images/flags/' + user.country.toUpperCase() + '.png)'"
                                     class="player-flag">
+                                    <span class="flag-emoji"><% user.country.toUpperCase() | flag %></span>
                                     <div class="flag-dropdown">
                                         <% flags[user.country.toUpperCase()] %>
                                     </div>
@@ -113,6 +113,7 @@
     </div>
 </div>
 
+<script src="/static/js/asserts/vue-twemoji-flags.js"></script>
 <script src="/static/js/asserts/vue-flags.js"></script>
 <script src="/static/js/pages/leaderboard.js"></script>
 {% endblock %}
