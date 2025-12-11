@@ -3,7 +3,7 @@
 }
 
 .sidebar {
-    background: hsl(var(--main), 10%, 15%);
+    background: #2a2a2a;
     width: 230px;
     top: 0;
     left: 0;

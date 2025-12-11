@@ -15,7 +15,7 @@
   height: auto;
   width: auto;
   padding: 60px 22px 20px 22px;
-  background-color: hsl(var(--main), 30%, 50%);
+  background-color: #4a4a4a;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
@@ -91,7 +91,7 @@ ul {
   background-size: cover;
   margin: 5;
   border-radius: 7px;
-  background: hsl(var(--main), 10%, 25%);
+  background: #3a3a3a;
 }
 
 .selection-block:hover {

@@ -1,6 +1,6 @@
 .main-block{
-    background-color: hsl(var(--main),10%,15%);
-    color: #fff;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
     padding: 20px;
 }
 
@@ -34,7 +34,7 @@
     margin: 5;
     border-radius: 7px;
     transition: 0.2s ease;
-    background: hsl(var(--main),10%,25%);
+    background: #3a3a3a;
 }
 
 .selection-block:hover{

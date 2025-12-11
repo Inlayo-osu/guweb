@@ -4,12 +4,12 @@
 }
 
 .second-block {
-  background: hsl(var(--main), 12%, 15%);
+  background: #252525;
 }
 
 .stats-block {
   width: 100%;
-  background: hsl(var(--main), 25%, 25%);
+  background: #3a3a3a;
   padding: 9.5px;
   margin-bottom: 9.5px !important;
 }
@@ -30,7 +30,7 @@
   align-items: flex-end;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-  background: hsl(var(--main), 30%, 50%);
+  background: #4a4a4a;
   position: relative;
   overflow: hidden;
 }

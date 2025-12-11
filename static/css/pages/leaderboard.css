@@ -10,13 +10,13 @@ a:hover {
 }
 
 .main-block {
-  background-color: hsl(var(--main), 10%, 15%);
+  background-color: #2a2a2a;
   margin-top: 0;
   width: auto;
 }
 
 .leaderboard-banner {
-  background-color: hsl(var(--main), 30%, 50%);
+  background-color: #4a4a4a;
   height: 194px;
   border-radius: 0;
   border-top-right-radius: 8px;
@@ -24,11 +24,10 @@ a:hover {
 }
 
 .leaderboard-column {
-  background-color: #eee;
-  color: #222;
+  color: #e0e0e0;
   height: 38px;
   font-size: 12px;
-  background-color: hsl(var(--main), 15%, 25%);
+  background-color: #3a3a3a;
 }
 
 .leaderboard-main-bg {
