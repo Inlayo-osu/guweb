@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.9
+#!/usr/bin/env python3.12
 # -*- coding: utf-8 -*-
 
 __all__ = ()
@@ -9,15 +9,18 @@ import aiohttp
 import orjson
 from quart import Quart
 from quart import render_template
+from quart import session
 
 from cmyui.logging import Ansi
 from cmyui.logging import log
 from cmyui.mysql import AsyncSQLPool
+from redis import asyncio as aioredis
 from cmyui.version import Version
 
 from objects import glob
 
 app = Quart(__name__)
+app.config["PERMANENT_SESSION_LIFETIME"] = 86300000
 
 version = Version(1, 3, 0)
 
@@ -25,11 +28,20 @@ version = Version(1, 3, 0)
 # we recommend using a long randomly generated ascii string.
 app.secret_key = glob.config.secret_key
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+
 @app.before_serving
 async def mysql_conn() -> None:
     glob.db = AsyncSQLPool()
     await glob.db.connect(glob.config.mysql) # type: ignore
     log('Connected to MySQL!', Ansi.LGREEN)
+
+@app.before_serving
+async def redis_conn() -> None:
+    glob.redis = await aioredis.from_url(glob.config.redisDSN)
+    log('Connected to Redis!', Ansi.LGREEN)
 
 @app.before_serving
 async def http_conn() -> None:
@@ -39,6 +51,7 @@ async def http_conn() -> None:
 @app.after_serving
 async def shutdown() -> None:
     await glob.db.close()
+    await glob.redis.close() 
     await glob.http.close()
 
 # globals which can be used in template code
@@ -58,6 +71,12 @@ def captchaKey() -> str:
 def domain() -> str:
     return glob.config.domain
 
+@app.template_global()
+def country_emoji(code: str) -> str:
+    """Convert country code to Twemoji URL."""
+    from objects.utils import country_code_to_emoji
+    return country_code_to_emoji(code)
+
 from blueprints.frontend import frontend
 app.register_blueprint(frontend)
 
@@ -71,4 +90,4 @@ async def page_not_found(e):
 
 if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    app.run(port=8000, debug=glob.config.debug) # blocking call
+    app.run(port=8590, debug=glob.config.debug) # blocking call
